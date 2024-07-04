@@ -35,31 +35,15 @@ local function main()
 	local ScriptViewer = {}
 
 	local window,codeFrame
-
+	
 	ScriptViewer.ViewScript = function(scr)
-		local s,source = pcall(env.decompile or function() end,scr)
-		if not s or not source then
-			source = "local test = 5\n\nlocal c = test + tick()\ngame.Workspace.Board:Destroy()\nstring.match('wow\\'f',\"yes\",3.4e-5,true)\ngame. Workspace.Wow\nfunction bar() print(54) end\n string . match() string 4 .match()"
-			source = source.."\n"..[==[
-			function a.sad() end
-			function a.b:sad() end
-			function 4.why() end
-			function a b() end
-			function string.match() end
-			function string.match.why() end
-			function local() end
-			function local.thing() end
-			string  . "sad" match
-			().magnitude = 3
-			a..b
-			a..b()
-			a...b
-			a...b()
-			a....b
-			a....b()
-			string..match()
-			string....match()
-			]==]
+		if scr.ClassName ~= "Script" then
+			local s,source = pcall(env.decompile or function() end,scr)
+			if not s or not source then
+				source = "-- Your executor lacks decompile() or disassemble()."
+			end
+		else
+			source = "-- Cannot decompile server scripts."
 		end
 
 		codeFrame:SetText(source)
