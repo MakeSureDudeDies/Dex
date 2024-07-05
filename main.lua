@@ -309,7 +309,7 @@ Main = (function()
 			Main.Executor = identifyexecutor()
 		end
 		
-		Main.GuiHolder = Main.Elevated and service.CoreGui or plr:FindFirstChildOfClass("PlayerGui")
+		Main.GuiHolder = env.gethui() or Main.Elevated and service.CoreGui or plr:FindFirstChildOfClass("PlayerGui")
 		
 		setmetatable(env,nil)
 	end
