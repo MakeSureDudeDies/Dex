@@ -312,7 +312,7 @@ Main = (function()
 		if gethui then
 			Main.GuiHolder = env.gethui()
 		else
-			Main.Elevated and service.CoreGui or plr:FindFirstChildOfClass("PlayerGui")
+			Main.GuiHolder = Main.Elevated and service.CoreGui or plr:FindFirstChildOfClass("PlayerGui")
 		end
 		
 		setmetatable(env,nil)
