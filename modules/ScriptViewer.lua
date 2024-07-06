@@ -37,13 +37,13 @@ local function main()
 	local window,codeFrame
 	
 	ScriptViewer.ViewScript = function(scr)
+		local s,source = pcall(env.decompile or function() end,scr)
 		if scr.ClassName ~= "Script" then
-			local s,source = pcall(env.decompile or function() end,scr)
 			if not s or not source then
-				source = "-- Your executor lacks decompile() or disassemble()."
+				source = string.format("--[[\nDecompilation Failed \nScript: game.%s\n]]", scr:GetFullName())
 			end
 		else
-			source = "-- Cannot decompile server scripts."
+			source = string.format("--[[\nDecompilation Failed \nScript: game.%s\nReason: This is a server script. You cannot decompile scripts on the server.\n]]", scr:GetFullName())
 		end
 
 		codeFrame:SetText(source)
