@@ -139,7 +139,7 @@ Main = (function()
 	Main.AppControls = {}
 	Main.Apps = Apps
 	Main.MenuApps = {}
-	Main.GitRepoName = "LorekeeperZinnia/Dex"
+	Main.GitRepoName = "MakeSureDudeDies/Dex"
 	
 	Main.DisplayOrders = {
 		SideWindow = 8,
@@ -298,15 +298,20 @@ Main = (function()
 		
 		-- other
 		env.setfflag = setfflag
-		env.identifyexecutor = identifyexecutor or function() return "Unknown Executor" end
+		env.identifyexecutor = identifyexecutor
 		env.decompile = decompile
 		env.protectgui = protect_gui or (syn and syn.protect_gui)
 		env.gethui = gethui
 		env.setclipboard = setclipboard
 		env.getnilinstances = getnilinstances or get_nil_instances
 		env.getloadedmodules = getloadedmodules
-		
-		Main.Executor = identifyexecutor()
+
+		if env.identifyexecutor then
+			Main.Executor = identifyexecutor()
+		else
+			Main.Executor = "Unknown Executor"
+		end
+
 		
 		if env.gethui then
 			Main.GuiHolder = env.gethui()
