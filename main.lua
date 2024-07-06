@@ -311,7 +311,6 @@ Main = (function()
 		else
 			Main.Executor = "Unknown Executor"
 		end
-
 		
 		if env.gethui then
 			Main.GuiHolder = env.gethui()
