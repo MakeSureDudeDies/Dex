@@ -298,6 +298,7 @@ Main = (function()
 		
 		-- other
 		env.setfflag = setfflag
+		env.identifyexecutor = identifyexecutor or function() return "Unknown Executor" end
 		env.decompile = decompile
 		env.protectgui = protect_gui or (syn and syn.protect_gui)
 		env.gethui = gethui
@@ -305,11 +306,9 @@ Main = (function()
 		env.getnilinstances = getnilinstances or get_nil_instances
 		env.getloadedmodules = getloadedmodules
 		
-		if identifyexecutor then
-			Main.Executor = identifyexecutor()
-		end
+		Main.Executor = identifyexecutor()
 		
-		if gethui then
+		if env.gethui then
 			Main.GuiHolder = env.gethui()
 		else
 			Main.GuiHolder = Main.Elevated and service.CoreGui or plr:FindFirstChildOfClass("PlayerGui")
