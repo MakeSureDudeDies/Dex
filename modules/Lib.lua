@@ -2698,6 +2698,7 @@ local function main()
 			
 			local editBox = Instance.new("TextBox")
 			editBox.Name = "EditBox"
+			editBox.TextEditable = false -- Can't edit Script Viewer output. Change when testing.
 			editBox.MultiLine = true
 			editBox.Visible = false
 			editBox.Parent = frame
